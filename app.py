@@ -16,8 +16,11 @@ def is_prime(n):
     return True
 
 def is_perfect(n):
+    if n <= 0:
+        return False  # Handle non-positive numbers
     divisors_sum = sum(i for i in range(1, n) if n % i == 0)
     return divisors_sum == n
+
 
 def is_armstrong(n):
     digits = [int(digit) for digit in str(n)]
