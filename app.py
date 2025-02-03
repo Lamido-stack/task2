@@ -23,18 +23,20 @@ def is_perfect(n):
 
 
 def is_armstrong(n):
+    if n < 0:
+        return False
     digits = [int(digit) for digit in str(n)]
     return sum(d ** len(digits) for d in digits) == n
 
 def digit_sum(n):
-    return sum(int(digit) for digit in str(n))
+    return sum(int(digit) for digit in str(abs(n)))
+
 
 @app.route('/api/classify-number', methods=['GET'])
 def classify_number():
     try:
         number = int(request.args.get('number'))
-        if number < 0:
-            return jsonify({"number": "alphabet", "error": True}), 400
+
     except (ValueError, TypeError):
         return jsonify({"number": "alphabet", "error": True}), 400
 
