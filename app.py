@@ -33,6 +33,8 @@ def digit_sum(n):
 def classify_number():
     try:
         number = int(request.args.get('number'))
+        if number < 0:
+            return jsonify({"number": number, "error": "Negative numbers are not allowed"}), 400
     except (ValueError, TypeError):
         return jsonify({"number": "alphabet", "error": True}), 400
 
